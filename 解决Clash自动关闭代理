@@ -1,0 +1,27 @@
+General YAML：
+mixed-port: 7890
+allow-lan: false
+log-level: info
+external-controller: '127.0.0.1:9090'
+secret: ''
+ipv6: false
+
+# Will be ignored after profile selection
+proxies:
+  - name: Shadowsocks
+    type: socks5
+    server: 127.0.0.1
+    port: 1080
+proxy-groups:
+  - name: Proxy
+    type: select
+    proxies:
+      - Shadowsocks
+rules:
+  - 'MATCH,DIRECT'
+  
+  键入“regedit”命令打开注册表，计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ProxyEnable
+  将“ProxyEnable”添加到火绒自定义规则中
+  
+  "Internet Settings"文件夹的权限修改为“当前用户只可读取”，管理员和系统权限依然是完全获取，这样其他软件就无法修改相应的注册表，
+  另外Clash以管理员身份运行，不影响Clash使用。
